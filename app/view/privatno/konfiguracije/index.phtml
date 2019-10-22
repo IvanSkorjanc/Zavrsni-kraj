@@ -1,0 +1,63 @@
+<a href="<?php echo App::config("url") ?>konfiguracija/pripremaNovi" 
+class=" button expanded">
+<i class="fas fa-plus-square"></i>
+Dodaj novu konfiguraciju</a>
+
+<div class="grid-container">
+<div class="grid-x">
+
+<form 
+    action="<?php echo App::config("url") ?>konfiguracija/index" 
+    method="get"> 
+
+    <input type="text" name="uvjet" id="uvjet" 
+    placeholder="unesite uvjet pretraživanja"
+    value="<?php echo App::param("uvjet") ?>" />
+    <input type="hidden" name="trazi" value="true" />
+
+</form>
+
+<table id="tablicaKonfiguracije">
+  <thead>
+    <tr>
+     <th>Naziv</th>
+     <th>Opis</th>
+     <th>Cijena</th>
+     <th>Promjeni</th>
+     <th>Akcija</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($konfiguracije as $konfiguracija): ?>
+    <tr>
+    <td><?php echo $konfiguracija->naziv?></td>
+            <td><?=$konfiguracija->opis?></td>
+            <td><?php echo $konfiguracija->cijena?></td>
+            <td>
+                        <?php echo $konfiguracija->naziv?><hr />
+                        <a title="Promjeni <?php echo $konfiguracija->naziv?>" 
+                            href="<?php 
+                            echo App::config("url") 
+                            ?>konfiguracija/pripremaPromjeni/<?php echo $konfiguracija->sifra ?>">
+                            <i class="fas fa-edit fa-2x" style="color: orange"></i>
+                        </a>
+                        
+                            <a title="Obriši <?php echo $konfiguracija->naziv?>" 
+                                onclick="return confirm('Sigurno obrisati <?php echo $konfiguracija->naziv?>');"
+                                href="<?php 
+                                echo App::config("url") 
+                                ?>konfiguracija/brisanje/<?php echo $konfiguracija->sifra ?>">
+                                <i class="fas fa-trash fa-2x" style="color: red"></i>
+                            </a>                       
+                            </td>
+              </tr>
+
+    <?php endforeach;?>
+
+</div>
+
+
+
+
+
+

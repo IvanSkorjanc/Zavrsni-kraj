@@ -1,0 +1,41 @@
+<a href="<?php echo App::config("url") ?>komponenta/pripremaNovi" 
+class=" button expanded">
+<i class="fas fa-plus-square"></i>
+Dodaj novu komponentu</a>
+
+<table id="tablicaKomponente">
+  <thead>
+    <tr>
+     <th>Naziv</th>
+     <th>Opis</th>
+     <th>Cijena</th>
+     <th>Proizvodac</th>
+     <th>Akcija</th>
+     </tr>
+  </thead>
+  <tbody>
+    <?php foreach($komponente as $komponenta): ?>
+        <tr>
+            <td><?php echo $komponenta->naziv?></td>
+            <td><?=$komponenta->opis?></td>
+            <td><?php echo $komponenta->cijena?></td>
+            <td><?php echo $komponenta->proizvodac?></td>
+            <td>
+            <a title="Promjeni <?php echo $komponenta->naziv ?>" 
+                href="<?php 
+                echo App::config("url") 
+                ?>komponenta/pripremaPromjeni/<?php echo $komponenta->sifra ?>">
+                <i class="fas fa-edit fa-2x" style="color: orange"></i>
+            </a>
+                <a title="Obriši <?php echo $komponenta->naziv ?>" 
+                    onclick="return confirm('Sigurno obrisati <?php echo $komponenta->naziv ?>?');"
+                    href="<?php 
+                    echo App::config("url") 
+                    ?>komponenta/brisanje/<?php echo $komponenta->sifra ?>">
+                    <i class="fas fa-trash fa-2x" style="color: red"></i>
+                </a> 
+            </td>
+        </tr>
+    <?php endforeach;?>
+  </tbody>
+</table>
