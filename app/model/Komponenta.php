@@ -22,10 +22,7 @@ class Komponenta
         $veza = DB::getInstance();
         $izraz = $veza->prepare("
         
-        select a.naziv, a.opis,a.cijena, 
-        b.naziv as proizvodac from komponenta a
-        inner join proizvodac  b on a.proizvodac=b.sifra
-        where a.sifra=:komponenta
+        select * from komponenta where sifra=:komponenta
         
         ");
         $izraz->execute(['komponenta'=>$id]);
