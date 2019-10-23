@@ -19,7 +19,8 @@ class KomponentaController extends UlogaOperater
     public function pripremaNovi()
     {
     
-        $this->view->render("privatno/komponente/novi");
+        $this->view->render("privatno/komponente/novi",
+    ["proizvodaci"=>Proizvodac::getProizvodaci()]);
     
     }
 
@@ -33,18 +34,19 @@ class KomponentaController extends UlogaOperater
           return;
       }
 
-      Komponenta::novi();
-      $this->index();
+      $this->pripremaPromjeni(Komponenta::novi());
 
     }
 
 
-    public function pripremaPromjeni()
+    public function pripremaPromjeni($id)
     {
 
        
-
-       $this->view->render("privatno/komponente/promjeni");
+        App::setParams(Komponenta::read($id));
+       $this->view->render("privatno/komponente/promjeni",
+       ['id'=>$id,
+       "proizvodaci"=>Proizvodac::getProizvodaci()]);
 
     }
 
@@ -88,5 +90,5 @@ class KomponentaController extends UlogaOperater
             ]);
     }
 
-    
+
 }
